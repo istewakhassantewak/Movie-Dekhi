@@ -13,6 +13,17 @@
     --max-width: 72rem;
 }
 
+html[data-theme="light"] {
+    --bg: #f5f7fb;
+    --bg-soft: #ffffff;
+    --text: #171717;
+    --muted: #4d5562;
+    --panel: #e8ebf1;
+    --panel-hover: #dce1ea;
+    --border: rgba(23, 23, 23, 0.22);
+    --focus: #145ce6;
+}
+
 *,
 *::before,
 *::after {
@@ -71,6 +82,10 @@ input {
     z-index: -1;
 }
 
+html[data-theme="light"] .overlay {
+    background: linear-gradient(180deg, rgba(245, 247, 251, 0.58), rgba(245, 247, 251, 0.76));
+}
+
 .top-nav {
     max-width: var(--max-width);
     margin: 0 auto;
@@ -80,6 +95,20 @@ input {
     align-items: center;
     gap: 1rem;
     padding: 1rem;
+}
+
+.top-nav.is-scrolled {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(8px);
+    background: rgba(0, 0, 0, 0.55);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+html[data-theme="light"] .top-nav.is-scrolled {
+    background: rgba(255, 255, 255, 0.88);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
 }
 
 .brand img {
@@ -230,10 +259,25 @@ input {
     background-color: #232323;
 }
 
+html[data-theme="light"] .separation {
+    background-color: #d9dfe8;
+}
+
 .feature-grid {
     max-width: var(--max-width);
     margin: 0 auto;
     padding: 1rem;
+}
+
+.reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 460ms ease, transform 460ms ease;
+}
+
+.reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .feature {
@@ -382,6 +426,16 @@ input {
     color: #fff;
 }
 
+html[data-theme="light"] .footer-item a:hover {
+    color: #111;
+}
+
+.copyright {
+    margin: 1.6rem 0 0;
+    color: var(--muted);
+    font-size: 0.9rem;
+}
+
 .sr-only {
     border: 0;
     clip: rect(0 0 0 0);
@@ -413,6 +467,36 @@ input {
 
 .toast.is-visible {
     opacity: 1;
+    transform: translateY(0);
+}
+
+.back-to-top {
+    position: fixed;
+    right: 1rem;
+    bottom: 4.4rem;
+    z-index: 990;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: rgba(0, 0, 0, 0.78);
+    color: var(--text);
+    display: grid;
+    place-items: center;
+    font-size: 1.05rem;
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(10px);
+}
+
+html[data-theme="light"] .back-to-top {
+    background: rgba(255, 255, 255, 0.92);
+}
+
+.back-to-top.is-visible {
+    opacity: 1;
+    pointer-events: auto;
     transform: translateY(0);
 }
 

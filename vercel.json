@@ -2,10 +2,6 @@
   "version": 2,
   "builds": [
     {
-      "src": "server.js",
-      "use": "@vercel/node"
-    },
-    {
       "src": "index.html",
       "use": "@vercel/static"
     },
@@ -22,23 +18,13 @@
       "use": "@vercel/static"
     }
   ],
-  "functions": {
-    "server.js": {
-      "includeFiles": [
-        "index.html",
-        "style.css",
-        "app.js",
-        "Assets/**"
-      ]
-    }
-  },
   "routes": [
     {
       "handle": "filesystem"
     },
     {
       "src": "/(.*)",
-      "dest": "server.js"
+      "dest": "/index.html"
     }
   ]
 }

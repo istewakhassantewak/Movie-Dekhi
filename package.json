@@ -1,11 +1,9 @@
 {
   "name": "moviedekhi",
   "version": "1.0.0",
-  "description": "",
-  "main": "server.js",
+  "description": "Static frontend portfolio-style Netflix clone landing page.",
   "scripts": {
-    "start": "node server.js",
-    "dev": "node server.js"
+    "start": "npx serve ."
   },
   "repository": {
     "type": "git",
@@ -18,13 +16,5 @@
   "bugs": {
     "url": "https://github.com/istewakhassantewak/Netflix-Clone/issues"
   },
-  "homepage": "https://github.com/istewakhassantewak/Netflix-Clone#readme",
-  "dependencies": {
-    "bcryptjs": "^3.0.3",
-    "express": "^5.2.1",
-    "express-rate-limit": "^8.3.2",
-    "express-session": "^1.19.0",
-    "helmet": "^8.1.0",
-    "pg": "^8.20.0"
-  }
+  "homepage": "https://github.com/istewakhassantewak/Netflix-Clone#readme"
 }

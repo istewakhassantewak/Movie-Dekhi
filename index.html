@@ -21,6 +21,7 @@
             </a>
             <div class="nav-actions">
                 <button class="btn" type="button" id="languageToggle" aria-pressed="false">English</button>
+                <button class="btn" type="button" id="themeToggle" aria-pressed="false">Dark</button>
                 <button class="btn btn-red-sm" type="button" id="signInBtn">Sign In</button>
                 <button class="btn btn-red-outline" type="button" id="signUpBtn">Sign Up</button>
             </div>
@@ -43,7 +44,7 @@
     <div class="separation" aria-hidden="true"></div>
 
     <main>
-        <section class="feature-grid">
+        <section class="feature-grid reveal">
             <article class="feature">
                 <div>
                     <h2>Enjoy on your TV</h2>
@@ -58,7 +59,7 @@
 
         <div class="separation" aria-hidden="true"></div>
 
-        <section class="feature-grid">
+        <section class="feature-grid reveal">
             <article class="feature feature-reverse">
                 <div class="media-wrap media-static">
                     <img src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/mobile-0819.jpg" alt="Phone showing downloaded MovieDekhi content">
@@ -72,7 +73,7 @@
 
         <div class="separation" aria-hidden="true"></div>
 
-        <section class="feature-grid">
+        <section class="feature-grid reveal">
             <article class="feature">
                 <div>
                     <h2>Watch everywhere</h2>
@@ -87,7 +88,7 @@
 
         <div class="separation" aria-hidden="true"></div>
 
-        <section class="feature-grid">
+        <section class="feature-grid reveal">
             <article class="feature feature-reverse">
                 <div class="media-wrap media-static">
                     <img src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/mobile-0819.jpg" alt="Kids profile artwork">
@@ -101,7 +102,7 @@
 
         <div class="separation" aria-hidden="true"></div>
 
-        <section class="faq" id="faq" aria-labelledby="faq-title">
+        <section class="faq reveal" id="faq" aria-labelledby="faq-title">
             <h2 id="faq-title">Frequently Asked Questions</h2>
             <div class="faq-list">
                 <article class="faq-item">
@@ -149,7 +150,7 @@
 
     <div class="separation" aria-hidden="true"></div>
 
-    <footer class="footer-container">
+    <footer class="footer-container reveal">
         <p class="question">Questions? <a href="tel:+18445052993">Call 1-844-505-2993</a></p>
         <div class="footer-grid">
             <div class="footer-item">
@@ -176,50 +177,10 @@
                 <a href="https://moviedekhi.com/contact" target="_blank" rel="noopener noreferrer">Contact Us</a>
             </div>
         </div>
+        <p class="copyright">Built by MovieDekhi - <span id="currentYear"></span></p>
     </footer>
 
     <div id="uiToast" class="toast" role="status" aria-live="polite" aria-atomic="true"></div>
-
-    <div id="authModal" class="modal-backdrop" hidden>
-        <section class="auth-modal" role="dialog" aria-modal="true" aria-labelledby="authTitle">
-            <button id="closeAuthModal" class="modal-close" type="button" aria-label="Close authentication form">&times;</button>
-            <h2 id="authTitle">Sign In</h2>
-            <p id="authPrompt" class="auth-prompt">Please sign in before continuing.</p>
-
-            <div class="auth-tabs" role="tablist" aria-label="Authentication options">
-                <button id="tabSignIn" class="auth-tab is-active" type="button" role="tab" aria-selected="true" aria-controls="panelSignIn">Sign In</button>
-                <button id="tabSignUp" class="auth-tab" type="button" role="tab" aria-selected="false" aria-controls="panelSignUp">Sign Up</button>
-            </div>
-
-            <div id="panelSignIn" class="auth-panel" role="tabpanel" aria-labelledby="tabSignIn">
-                <form id="signInForm" class="auth-form" novalidate>
-                    <label for="signInEmail">Email address</label>
-                    <input id="signInEmail" type="email" autocomplete="email" required>
-                    <label for="signInPassword">Password</label>
-                    <input id="signInPassword" type="password" autocomplete="current-password" minlength="8" required>
-                    <button class="btn btn-red auth-submit" type="submit">Sign In</button>
-                </form>
-            </div>
-
-            <div id="panelSignUp" class="auth-panel" role="tabpanel" aria-labelledby="tabSignUp" hidden>
-                <form id="signUpForm" class="auth-form" novalidate>
-                    <label for="signUpEmail">Email address</label>
-                    <input id="signUpEmail" type="email" autocomplete="email" required>
-                    <label for="signUpPassword">Password</label>
-                    <input id="signUpPassword" type="password" autocomplete="new-password" minlength="8" required>
-                    <label for="signUpConfirm">Confirm password</label>
-                    <input id="signUpConfirm" type="password" autocomplete="new-password" minlength="8" required>
-                    <button class="btn btn-red auth-submit" type="submit">Create Account</button>
-                </form>
-            </div>
-
-            <p id="authFeedback" class="feedback" aria-live="polite"></p>
-            <p class="auth-links">
-                <a href="https://moviedekhi.com/help" target="_blank" rel="noopener noreferrer">Need help?</a>
-                <a href="https://moviedekhi.com/privacy" target="_blank" rel="noopener noreferrer">Privacy</a>
-                <a href="https://moviedekhi.com/terms" target="_blank" rel="noopener noreferrer">Terms</a>
-            </p>
-        </section>
-    </div>
+    <button id="backToTop" class="back-to-top" type="button" aria-label="Back to top">↑</button>
 </body>
 </html>
