@@ -6,7 +6,15 @@
       "use": "@vercel/node"
     }
   ],
+  "functions": {
+    "server.js": {
+      "includeFiles": "index.html,style.css,app.js,Assets/**"
+    }
+  },
   "routes": [
+    {
+      "handle": "filesystem"
+    },
     {
       "src": "/(.*)",
       "dest": "server.js"
