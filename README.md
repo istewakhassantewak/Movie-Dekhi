@@ -20,3 +20,20 @@
 - Use HTTPS in production and set `COOKIE_SECURE=true`.
 - Do not commit `.env` or `data/` files.
 
+## Vercel Deployment
+
+- This project uses `server.js` as a serverless handler on Vercel (`vercel.json` included).
+- Required Vercel environment variables:
+  - `NODE_ENV=production`
+  - `SESSION_SECRET=<long-random-secret>`
+  - `COOKIE_SECURE=true`
+  - `TRUST_PROXY=true`
+  - `COOKIE_SAME_SITE=lax`
+  - `SUPABASE_DB_URL=<Supabase Postgres connection string>`
+- Redeploy after setting environment variables.
+- If `SUPABASE_DB_URL` is set, user accounts are stored persistently in Supabase Postgres.
+- If `SUPABASE_DB_URL` is not set, app falls back to local file storage (`data/users.json` or `/tmp` on serverless).
+- Health endpoint for quick checks:
+  - `GET /api/health`
+  - Shows whether Supabase is configured and connected (`usingSupabase`, `dbConnected`, `dbState`).
+
