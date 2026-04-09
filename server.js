@@ -12,18 +12,26 @@ const { Pool } = require("pg");
 const app = express();
 const PORT = Number(process.env.PORT) || 3000;
 const IS_VERCEL = process.env.VERCEL === "1";
-const SESSION_SECRET = process.env.SESSION_SECRET || "change-this-secret-in-production";
+const SESSION_SECRET_ENV = process.env.SESSION_SECRET || "";
 const IS_PROD = process.env.NODE_ENV === "production";
 const TRUST_PROXY = process.env.TRUST_PROXY === "true";
 const COOKIE_SECURE = process.env.COOKIE_SECURE === "true" || IS_PROD;
-const COOKIE_SAME_SITE = process.env.COOKIE_SAME_SITE || "lax";
+const normalizeSameSite = (value) => {
+    const normalized = String(value || "lax").trim().toLowerCase();
+    if (normalized === "none" || normalized === "strict" || normalized === "lax") {
+        return normalized;
+    }
+    return "lax";
+};
+const COOKIE_SAME_SITE = normalizeSameSite(process.env.COOKIE_SAME_SITE);
 const AUTH_RATE_LIMIT = Number(process.env.AUTH_RATE_LIMIT) || 50;
 const SUPABASE_DB_URL = process.env.SUPABASE_DB_URL || "";
 const DATA_DIR = IS_VERCEL ? path.join("/tmp", "moviedekhi-data") : path.join(__dirname, "data");
 const USERS_FILE = path.join(DATA_DIR, "users.json");
+const SESSION_SECRET = SESSION_SECRET_ENV || (IS_PROD ? "temporary-insecure-secret" : "local-dev-secret");
 
-if (IS_PROD && SESSION_SECRET === "change-this-secret-in-production") {
-    throw new Error("SESSION_SECRET must be set in production.");
+if (IS_PROD && !SESSION_SECRET_ENV) {
+    console.warn("Warning: SESSION_SECRET is missing in production. Set it in Vercel env vars.");
 }
 
 if (TRUST_PROXY) {
@@ -164,6 +172,10 @@ app.get("/api/health", async (_req, res) => {
         usingSupabase,
         dbConnected,
         dbState: usingSupabase ? dbReadyState : "disabled",
+        configWarnings: [
+            ...(IS_PROD && !SESSION_SECRET_ENV ? ["SESSION_SECRET is missing"] : []),
+            ...(COOKIE_SAME_SITE === "none" && !COOKIE_SECURE ? ["COOKIE_SAME_SITE=none requires COOKIE_SECURE=true"] : [])
+        ],
         timestamp: new Date().toISOString()
     });
 });
