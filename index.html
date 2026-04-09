@@ -1,182 +1,225 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Netflix</title>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' https: data:; media-src https:; style-src 'self'; font-src https:; script-src 'self'; connect-src 'self'; base-uri 'self'; frame-ancestors 'none';">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <title>Netflix Clone</title>
     <link rel="stylesheet" href="style.css">
+    <script src="app.js" defer></script>
 </head>
-
 <body>
-    <div class="main">
-        <nav ">
-            <span><img width=" 53" src="Assets/Images/logo.svg" alt=""></span>
-            <div>
-                <button class="btn">English</button>
-                <button class="btn btn-red-sm">Sign In</button>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+
+    <header class="main" role="banner">
+        <div class="overlay" aria-hidden="true"></div>
+        <nav class="top-nav" aria-label="Main navigation">
+            <a class="brand" href="#" aria-label="Netflix home">
+                <img src="Assets/Images/logo.svg" alt="Netflix">
+            </a>
+            <div class="nav-actions">
+                <button class="btn" type="button" id="languageToggle" aria-pressed="false">English</button>
+                <button class="btn btn-red-sm" type="button" id="signInBtn">Sign In</button>
+                <button class="btn btn-red-outline" type="button" id="signUpBtn">Sign Up</button>
             </div>
         </nav>
-        <div class="box">
-        </div>
-        <div class="hero">
-            <span class="f1">Unlimited movies, TV
-            </span>
-            <span class="f1">shows, and more</span>
-            <span>Starts at USD 2.99. Cancel anytime.</span>
-            <span>Ready to watch? Enter your email to create or restart your membership.</span>
-            <div class="hero-buttons">
-                <input type="text" placeholder="Email address">
-                <button class="btn btn-red">Get Started &gt;</button>
+
+        <section class="hero" id="main-content" aria-labelledby="hero-title">
+            <h1 id="hero-title">Unlimited movies, TV shows, and more</h1>
+            <p class="hero-subtitle">Starts at USD 2.99. Cancel anytime.</p>
+            <p>Ready to watch? Enter your email to create or restart your membership.</p>
+
+            <form id="ctaForm" class="hero-form" novalidate>
+                <label for="emailInput" class="sr-only">Email address</label>
+                <input id="emailInput" name="email" type="email" autocomplete="email" inputmode="email" placeholder="Email address" required>
+                <button class="btn btn-red" type="submit">Get Started</button>
+            </form>
+            <p id="emailFeedback" class="feedback" aria-live="polite"></p>
+        </section>
+    </header>
+
+    <div class="separation" aria-hidden="true"></div>
+
+    <main>
+        <section class="feature-grid">
+            <article class="feature">
+                <div>
+                    <h2>Enjoy on your TV</h2>
+                    <p>Watch on smart TVs, PlayStation, Xbox, Chromecast, Apple TV, Blu-ray players, and more.</p>
+                </div>
+                <div class="media-wrap">
+                    <img src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/tv.png" alt="TV with Netflix interface">
+                    <video src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/video-tv-in-0819.m4v" autoplay loop muted playsinline></video>
+                </div>
+            </article>
+        </section>
+
+        <div class="separation" aria-hidden="true"></div>
+
+        <section class="feature-grid">
+            <article class="feature feature-reverse">
+                <div class="media-wrap media-static">
+                    <img src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/mobile-0819.jpg" alt="Phone showing downloaded Netflix content">
+                </div>
+                <div>
+                    <h2>Download your shows to watch offline</h2>
+                    <p>Save your favorites easily and always have something to watch.</p>
+                </div>
+            </article>
+        </section>
+
+        <div class="separation" aria-hidden="true"></div>
+
+        <section class="feature-grid">
+            <article class="feature">
+                <div>
+                    <h2>Watch everywhere</h2>
+                    <p>Stream unlimited movies and TV shows on your phone, tablet, laptop, and TV.</p>
+                </div>
+                <div class="media-wrap">
+                    <img src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/tv.png" alt="Watch anywhere illustration">
+                    <video src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/video-tv-in-0819.m4v" autoplay loop muted playsinline></video>
+                </div>
+            </article>
+        </section>
+
+        <div class="separation" aria-hidden="true"></div>
+
+        <section class="feature-grid">
+            <article class="feature feature-reverse">
+                <div class="media-wrap media-static">
+                    <img src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/mobile-0819.jpg" alt="Kids profile artwork">
+                </div>
+                <div>
+                    <h2>Create profiles for kids</h2>
+                    <p>Send kids on adventures with their favorite characters in a space made just for them, free with your membership.</p>
+                </div>
+            </article>
+        </section>
+
+        <div class="separation" aria-hidden="true"></div>
+
+        <section class="faq" id="faq" aria-labelledby="faq-title">
+            <h2 id="faq-title">Frequently Asked Questions</h2>
+            <div class="faq-list">
+                <article class="faq-item">
+                    <button class="faq-trigger" type="button" aria-expanded="false" aria-controls="faq-1" id="faq-button-1">
+                        <span>What is Netflix?</span>
+                        <span class="faq-icon" aria-hidden="true">+</span>
+                    </button>
+                    <div id="faq-1" class="faq-panel" role="region" aria-labelledby="faq-button-1">
+                        <p>Netflix is a streaming service that offers movies, TV shows, and original content on internet-connected devices.</p>
+                    </div>
+                </article>
+
+                <article class="faq-item">
+                    <button class="faq-trigger" type="button" aria-expanded="false" aria-controls="faq-2" id="faq-button-2">
+                        <span>How much does Netflix cost?</span>
+                        <span class="faq-icon" aria-hidden="true">+</span>
+                    </button>
+                    <div id="faq-2" class="faq-panel" role="region" aria-labelledby="faq-button-2">
+                        <p>Plans start at an affordable monthly rate and vary depending on the quality and number of simultaneous devices.</p>
+                    </div>
+                </article>
+
+                <article class="faq-item">
+                    <button class="faq-trigger" type="button" aria-expanded="false" aria-controls="faq-3" id="faq-button-3">
+                        <span>What can I watch on Netflix?</span>
+                        <span class="faq-icon" aria-hidden="true">+</span>
+                    </button>
+                    <div id="faq-3" class="faq-panel" role="region" aria-labelledby="faq-button-3">
+                        <p>You can watch popular series, blockbuster films, documentaries, anime, and critically acclaimed Netflix originals.</p>
+                    </div>
+                </article>
+
+                <article class="faq-item">
+                    <button class="faq-trigger" type="button" aria-expanded="false" aria-controls="faq-4" id="faq-button-4">
+                        <span>Where can I watch?</span>
+                        <span class="faq-icon" aria-hidden="true">+</span>
+                    </button>
+                    <div id="faq-4" class="faq-panel" role="region" aria-labelledby="faq-button-4">
+                        <p>Watch anywhere, anytime, on smartphones, tablets, smart TVs, game consoles, and web browsers.</p>
+                    </div>
+                </article>
             </div>
+        </section>
+    </main>
 
+    <div class="separation" aria-hidden="true"></div>
 
-        </div>
-        <div class="separation"></div>
-    </div>
-    <section class="first">
-        <div>
-            <span>
-
-
-                Enjoy on your TV
-            </span>
-            <span>
-                Watch on smart TVs, PlayStation, Xbox, Chromecast, Apple TV, Blu-ray players, and more.
-
-            </span>
-        </div>
-        <div class="secimage">
-            <img src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/tv.png" alt="">
-            <video src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/video-tv-in-0819.m4v"
-                autoplay loop muted></video>
-        </div>
-    </section>
-    <div class="separation"></div>
-
-
-
-    <section class="first second">
-
-        <div class="secimage">
-            <img src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/mobile-0819.jpg" alt="">
-        </div>
-        <div>
-            <span>
-                Download your shows to watch offline
-            </span>
-            <span>
-                save your favorites easily and always have something to watch.
-            </span>
-        </div>
-    </section>
-    <div class="separation"></div>
-
-    <section class="first third">
-        <div>
-            <span>
-
-
-                Watch everywhere
-            </span>
-            <span>
-                Stream unlimited movies and TV shows on your phone, tablet, laptop, and TV.
-            </span>
-        </div>
-        <div class="secimage">
-            <img src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/tv.png" alt="">
-            <video src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/video-tv-in-0819.m4v"
-                autoplay loop muted></video>
-        </div>
-    </section>
-    <div class="separation"></div>
-
-
-
-    <section class="first second">
-
-        <div class="secimage">
-            <img src="https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/mobile-0819.jpg" alt="">
-        </div>
-        <div>
-            <span>
-                Create profiles for kids
-            </span>
-            <span>
-                Send kids on adventures with their favorite characters in a space made just for them—free with your
-                membership.
-            </span>
-        </div>
-    </section>
-    <div class="separation"></div>
-
-
-
-    <section class="faq">
-        <h2>Frequently Asked Questions</h2>
-        <div class="faqbox">
-            <span>What is Netflix</span>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="currentColor"
-                fill="white" stroke="#141B34" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 4V20M20 12H4" />
-            </svg>
-        </div>
-        <div class="faqbox">
-            <span>How much does Netflix cost?</span>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="currentColor"
-                fill="white" stroke="#141B34" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 4V20M20 12H4" />
-            </svg>
-        </div>
-        <div class="faqbox">
-            <span>What can I watch on Netflix?</span>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="currentColor"
-                fill="white" stroke="#141B34" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 4V20M20 12H4" />
-            </svg>
-        </div>
-        <div class="faqbox">
-            <span>Where can I watch?</span>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="currentColor"
-                fill="white" stroke="#141B34" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 4V20M20 12H4" />
-            </svg>
-        </div>
-
-    </section>
-    <div class="separation"></div>
-
-    <footer>
-        <div class="question">Questions? call 1-844-505-2993</div>
-        <div class="footer">
+    <footer class="footer-container">
+        <p class="question">Questions? <a href="tel:+18445052993">Call 1-844-505-2993</a></p>
+        <div class="footer-grid">
             <div class="footer-item">
-
-                <a href="faq">FAQ</a>
-                <a href="faq">Investor Relations</a>
-                <a href="faq">Privacy</a>
-                <a href="faq">Speed Test</a>
+                <a href="https://help.netflix.com/en/node/412" target="_blank" rel="noopener noreferrer">FAQ</a>
+                <a href="https://ir.netflix.net/" target="_blank" rel="noopener noreferrer">Investor Relations</a>
+                <a href="https://help.netflix.com/legal/privacy" target="_blank" rel="noopener noreferrer">Privacy</a>
+                <a href="https://fast.com/" target="_blank" rel="noopener noreferrer">Speed Test</a>
             </div>
             <div class="footer-item">
-                <a href="faq">Help Center</a>
-                <a href="faq">Jobs</a>
-                <a href="faq">Cookie Preferences</a>
-                <a href="faq">Legal Notices</a>
-
+                <a href="https://help.netflix.com/en" target="_blank" rel="noopener noreferrer">Help Center</a>
+                <a href="https://jobs.netflix.com/" target="_blank" rel="noopener noreferrer">Jobs</a>
+                <a href="https://help.netflix.com/legal/corpinfo" target="_blank" rel="noopener noreferrer">Cookie Preferences</a>
+                <a href="https://help.netflix.com/legal/notices" target="_blank" rel="noopener noreferrer">Legal Notices</a>
             </div>
             <div class="footer-item">
-                <a href="faq">Account</a>
-                <a href="faq">Ways to Watch</a>
-                <a href="faq">Corporate Information</a>
-                <a href="faq">Only on Netflix</a>
+                <a href="https://www.netflix.com/youraccount" target="_blank" rel="noopener noreferrer">Account</a>
+                <a href="https://devices.netflix.com/en/" target="_blank" rel="noopener noreferrer">Ways to Watch</a>
+                <a href="https://help.netflix.com/legal/corpinfo" target="_blank" rel="noopener noreferrer">Corporate Information</a>
+                <a href="https://www.netflix.com/browse/genre/839338" target="_blank" rel="noopener noreferrer">Only on Netflix</a>
             </div>
             <div class="footer-item">
-                <a href="faq">Media Center</a>
-                <a href="faq">Terms of Use</a>
-                <a href="faq">Contact Us</a>
+                <a href="https://about.netflix.com/en/newsroom" target="_blank" rel="noopener noreferrer">Media Center</a>
+                <a href="https://help.netflix.com/legal/termsofuse" target="_blank" rel="noopener noreferrer">Terms of Use</a>
+                <a href="https://help.netflix.com/en/contactus" target="_blank" rel="noopener noreferrer">Contact Us</a>
             </div>
-
         </div>
     </footer>
-</body>
 
+    <div id="uiToast" class="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+
+    <div id="authModal" class="modal-backdrop" hidden>
+        <section class="auth-modal" role="dialog" aria-modal="true" aria-labelledby="authTitle">
+            <button id="closeAuthModal" class="modal-close" type="button" aria-label="Close authentication form">&times;</button>
+            <h2 id="authTitle">Sign In</h2>
+            <p id="authPrompt" class="auth-prompt">Please sign in before continuing.</p>
+
+            <div class="auth-tabs" role="tablist" aria-label="Authentication options">
+                <button id="tabSignIn" class="auth-tab is-active" type="button" role="tab" aria-selected="true" aria-controls="panelSignIn">Sign In</button>
+                <button id="tabSignUp" class="auth-tab" type="button" role="tab" aria-selected="false" aria-controls="panelSignUp">Sign Up</button>
+            </div>
+
+            <div id="panelSignIn" class="auth-panel" role="tabpanel" aria-labelledby="tabSignIn">
+                <form id="signInForm" class="auth-form" novalidate>
+                    <label for="signInEmail">Email address</label>
+                    <input id="signInEmail" type="email" autocomplete="email" required>
+                    <label for="signInPassword">Password</label>
+                    <input id="signInPassword" type="password" autocomplete="current-password" minlength="8" required>
+                    <button class="btn btn-red auth-submit" type="submit">Sign In</button>
+                </form>
+            </div>
+
+            <div id="panelSignUp" class="auth-panel" role="tabpanel" aria-labelledby="tabSignUp" hidden>
+                <form id="signUpForm" class="auth-form" novalidate>
+                    <label for="signUpEmail">Email address</label>
+                    <input id="signUpEmail" type="email" autocomplete="email" required>
+                    <label for="signUpPassword">Password</label>
+                    <input id="signUpPassword" type="password" autocomplete="new-password" minlength="8" required>
+                    <label for="signUpConfirm">Confirm password</label>
+                    <input id="signUpConfirm" type="password" autocomplete="new-password" minlength="8" required>
+                    <button class="btn btn-red auth-submit" type="submit">Create Account</button>
+                </form>
+            </div>
+
+            <p id="authFeedback" class="feedback" aria-live="polite"></p>
+            <p class="auth-links">
+                <a href="https://help.netflix.com/en" target="_blank" rel="noopener noreferrer">Need help?</a>
+                <a href="https://help.netflix.com/legal/privacy" target="_blank" rel="noopener noreferrer">Privacy</a>
+                <a href="https://help.netflix.com/legal/termsofuse" target="_blank" rel="noopener noreferrer">Terms</a>
+            </p>
+        </section>
+    </div>
+</body>
 </html>
